@@ -1,0 +1,51 @@
+name: Inference
+
+on:
+  workflow_dispatch:
+    inputs:
+      input_text:
+        description: 'Text to classify'
+        required: true
+        default: 'Sample text to test the model pipeline'
+
+jobs:
+  infer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install inference dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements-api.txt || true
+          pip install -r requirements-train.txt || true
+          pip install transformers torch
+
+      - name: Run Inference (uses a public HF sentiment model)
+        env:
+          INPUT_TEXT: ${{ github.event.inputs.input_text }}
+        run: |
+          python - <<'PY'
+          import os
+          from transformers import pipeline
+
+          text = os.environ.get('INPUT_TEXT', '')
+          if not text:
+              print('No input text provided')
+              raise SystemExit(1)
+
+          # Use a public, lightweight sentiment model so the workflow can run without a private model
+          model_name = 'distilbert-base-uncased-finetuned-sst-2-english'
+          classifier = pipeline('sentiment-analysis', model=model_name)
+
+          result = classifier(text)
+          print('Input:', text)
+          print('Result:', result)
+          PY
