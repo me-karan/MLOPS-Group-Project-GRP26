@@ -4,7 +4,7 @@ import pandas as pd
 
 from data_local import PROCESSED_DIR
 
-RAW_DATA_DIR = Path("dataset/HF_data/Raw")
+RAW_DATA_DIR = Path("Datasets/HFData/Raw")
 TRAIN_PATH = RAW_DATA_DIR / "train.csv"
 TEST_PATH = RAW_DATA_DIR / "test.csv"
 

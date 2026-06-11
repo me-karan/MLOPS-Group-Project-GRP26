@@ -8,6 +8,7 @@ from transformers import (
 
 def main():
 
+    run_name = "distilbert_v0_best_model"
     train_dataset, test_dataset = preprocess_data()
 
     model = AutoModelForSequenceClassification.from_pretrained(
@@ -16,7 +17,7 @@ def main():
     )
 
     training_args = TrainingArguments(
-        output_dir="./Results/Trainer",
+        output_dir=f"./Results/Trainer/{run_name}",
         num_train_epochs=1,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
@@ -33,7 +34,7 @@ def main():
 
     trainer.train()
 
-    trainer.save_model("Model/Trainer/best_model")
+    trainer.save_model(f"Model/Trainer/{run_name}/best_model")
 
 
 if __name__ == "__main__":
