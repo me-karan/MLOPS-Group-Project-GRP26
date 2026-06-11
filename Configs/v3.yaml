@@ -1,0 +1,6 @@
+run_name: distilbert_v3
+
+learning_rate: 3e-5
+batch_size: 16
+epochs: 2
+max_length: 256
