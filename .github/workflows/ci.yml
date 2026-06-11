@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies and linter
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements-api.txt || true
+          pip install -r requirements-train.txt || true
+          pip install flake8
+
+      # - name: Lint source code with flake8
+      #   run: flake8 Src/ --max-line-length=120
