@@ -19,9 +19,9 @@ from sklearn.metrics import (
 from preprocess import preprocess_data
 
 
-MODEL_PATH = "Model/Trainer/best_model"
+MODEL_PATH = "Model/Trainer/Local/best_model"
 
-REPORTS_DIR = Path("Reports/Trainer")
+REPORTS_DIR = Path("Reports/Trainer/Local")
 
 
 def compute_metrics(labels, predictions):

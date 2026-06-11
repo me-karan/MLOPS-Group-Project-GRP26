@@ -53,7 +53,7 @@ def main():
     )
 
     training_args = TrainingArguments(
-        output_dir="./Results/Trainer",
+        output_dir="./Results/Trainer/"+run_name,
         learning_rate=learning_rate,
         num_train_epochs=epochs,
         per_device_train_batch_size=batch_size,
