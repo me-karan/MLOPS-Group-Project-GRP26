@@ -27,6 +27,9 @@ https://wandb.ai/g25ait2048-iit-jodhpur/imdb-sentiment
 * Hugging Face Repository
 https://huggingface.co/g25Ait2048/imdb-sentiment-analysis/tree/main
 
+* Full Report
+https://github.com/Karan-IITJ-G25AIT2048/ML-Group-Project-GRP-26/blob/main/MLOPS-GRP-26-Report.pdf
+
 ## Results
 
 ### Experiment Results
