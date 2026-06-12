@@ -1,3 +1,4 @@
+import argparse
 import json
 from pathlib import Path
 
@@ -19,9 +20,26 @@ from sklearn.metrics import (
 from preprocess import preprocess_data
 
 
-MODEL_PATH = "Model/Trainer/Local/best_model"
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Evaluate a trained sentiment classification model."
+    )
 
-REPORTS_DIR = Path("Reports/Trainer/Local")
+    parser.add_argument(
+        "--model_path",
+        type=str,
+        required=True,
+        help="Path to trained model directory",
+    )
+
+    parser.add_argument(
+        "--report_dir",
+        type=str,
+        required=True,
+        help="Directory where evaluation reports will be saved",
+    )
+
+    return parser.parse_args()
 
 
 def compute_metrics(labels, predictions):
@@ -50,19 +68,24 @@ def compute_metrics(labels, predictions):
     }
 
 
-def save_reports(labels, predictions, metrics):
+def save_reports(
+    labels,
+    predictions,
+    metrics,
+    reports_dir,
+):
     """
     Save evaluation outputs to disk.
     """
 
-    REPORTS_DIR.mkdir(
+    reports_dir.mkdir(
         parents=True,
         exist_ok=True,
     )
 
     # Save metrics
     with open(
-        REPORTS_DIR / "evaluation_metrics.json",
+        reports_dir / "evaluation_metrics.json",
         "w",
     ) as f:
         json.dump(
@@ -84,7 +107,8 @@ def save_reports(labels, predictions, metrics):
     )
 
     cm_df.to_csv(
-        REPORTS_DIR / "confusion_matrix.csv"
+        reports_dir / "confusion_matrix.csv",
+        index=True,
     )
 
     # Save classification report
@@ -99,7 +123,7 @@ def save_reports(labels, predictions, metrics):
     )
 
     with open(
-        REPORTS_DIR / "classification_report.json",
+        reports_dir / "classification_report.json",
         "w",
     ) as f:
         json.dump(
@@ -108,10 +132,15 @@ def save_reports(labels, predictions, metrics):
             indent=4,
         )
 
-    print(f"Reports saved to: {REPORTS_DIR}")
+    print(f"\nReports saved to: {reports_dir}")
 
 
 def main():
+
+    args = parse_args()
+
+    model_path = args.model_path
+    reports_dir = Path(args.report_dir)
 
     print("Loading test dataset...")
 
@@ -120,7 +149,7 @@ def main():
     print("Loading model...")
 
     model = AutoModelForSequenceClassification.from_pretrained(
-        MODEL_PATH
+        model_path
     )
 
     trainer = Trainer(model=model)
@@ -149,12 +178,13 @@ def main():
     print("-" * 30)
 
     for metric, value in metrics.items():
-        print(f"{metric}: {value:.4f}")
+        print(f"{metric:<10}: {value:.4f}")
 
     save_reports(
         labels,
         preds,
         metrics,
+        reports_dir,
     )
 
     print("\nEvaluation completed successfully.")
