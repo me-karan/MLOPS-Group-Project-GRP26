@@ -8,6 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Create application directory
 WORKDIR /app
 
+
 # Copy dependency file first for better layer caching
 COPY requirements-api.txt .
 

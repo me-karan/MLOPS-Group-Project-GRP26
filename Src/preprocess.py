@@ -40,6 +40,7 @@ def create_datasets(train_df, test_df):
 
 
 def preprocess_data():
+    
     train_df, test_df = load_data()
 
     train_dataset, test_dataset = create_datasets(

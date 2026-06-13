@@ -8,7 +8,7 @@ from transformers import (
     AutoModelForSequenceClassification,
 )
 
-MODEL_PATH = "model/best_model"
+MODEL_PATH = "Model/Trainer/distilbert_v1_best_model"
 
 app = FastAPI(
     title="IMDb Sentiment Analysis API",

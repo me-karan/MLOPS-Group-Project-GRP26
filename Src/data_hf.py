@@ -5,6 +5,7 @@ import pandas as pd
 from data_local import PROCESSED_DIR
 
 RAW_DATA_DIR = Path("Datasets/HFData/Raw")
+PROCESSED_DATA_DIR = Path("Datasets/HFData/Processed")
 TRAIN_PATH = RAW_DATA_DIR / "train.csv"
 TEST_PATH = RAW_DATA_DIR / "test.csv"
 
@@ -31,7 +32,10 @@ def convert_to_dataframe(train_dataset, test_dataset):
 
 
 def save_data(train_df, test_df):
+
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    
     train_df.to_csv(TRAIN_PATH, index=False)
     test_df.to_csv(TEST_PATH, index=False)
     print(f"Saved train data to: {TRAIN_PATH}")

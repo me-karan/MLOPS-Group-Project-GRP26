@@ -1,5 +1,4 @@
 run_name: distilbert_v1
-
 learning_rate: 2e-5
 batch_size: 16
 epochs: 1

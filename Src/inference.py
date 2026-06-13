@@ -27,7 +27,7 @@ def load_classifier(token):
 
 def display_result(text, prediction):
     print("\n" + "-" * 60)
-    print("Inference Result")
+    print("Inference Result -")
     print("-" * 60)
     print(f"Input Text      : {text}")
     print(f"Predicted Class : {prediction['label']}")
