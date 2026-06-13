@@ -2,7 +2,7 @@ import os
 import wandb
 from transformers import pipeline
 
-MODEL_NAME = os.getenv("HF_MODEL_NAME", "g25Ait2048/distilbert-goodreads-genres")
+MODEL_NAME = os.getenv("HF_MODEL_NAME", "g25Ait2048/distilbert-base-uncased")
 
 PROJECT_NAME = "mlops-distilbert"
 ENTITY_NAME = "g25ait2014-indian-institute-technology-jodhpur"
