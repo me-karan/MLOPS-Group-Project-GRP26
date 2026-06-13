@@ -2,10 +2,9 @@ import os
 import wandb
 from transformers import pipeline
 
-MODEL_NAME = os.getenv("HF_MODEL_NAME", "g25Ait2048/distilbert-base-uncased")
+MODEL_NAME = os.getenv("HF_MODEL_NAME", "g25Ait2048/imdb-sentiment-analysis")
 
 PROJECT_NAME = "mlops-distilbert"
-ENTITY_NAME = "g25ait2014-indian-institute-technology-jodhpur"
 
 
 def get_text():
@@ -41,7 +40,6 @@ def main():
 
     run = wandb.init(
         project=PROJECT_NAME,
-        entity=ENTITY_NAME,
         job_type="inference",
     )
 

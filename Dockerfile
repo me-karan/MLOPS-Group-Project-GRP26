@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements-api.txt
 
 # Allow the model source to be configurable at build time
-ARG HF_MODEL_NAME=g25Ait2048/distilbert-base-uncased
+ARG HF_MODEL_NAME=g25Ait2048/imdb-sentiment-analysis
 ENV HF_MODEL_NAME=${HF_MODEL_NAME}
 
 # Create non-root user before copying application files
