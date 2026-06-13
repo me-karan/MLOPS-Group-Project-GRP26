@@ -27,6 +27,9 @@ https://wandb.ai/g25ait2048-iit-jodhpur/imdb-sentiment
 * Hugging Face Repository
 https://huggingface.co/g25Ait2048/imdb-sentiment-analysis/tree/main
 
+* Docker hub
+  https://hub.docker.com/r/anshumanyadav7/mlops-a3-inference
+
 * Full Report
 https://github.com/Karan-IITJ-G25AIT2048/ML-Group-Project-GRP-26/blob/main/MLOPS-GRP-26-Report.pdf
 
